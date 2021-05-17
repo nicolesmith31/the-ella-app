@@ -160,6 +160,7 @@ const addWorkoutExercise = async (exerciseId,workoutId) => {
   };
 
   let workoutPlan = [];
+  let workoutNames = [];
   const generateWorkout = (event) => {
     event.preventDefault();
 
@@ -177,6 +178,8 @@ const addWorkoutExercise = async (exerciseId,workoutId) => {
         for (let i = 0; i < formFields[categories[cat]]; i++) {
           let ranNum = Math.floor(Math.random() * parsedExerciseResponse.results.length);
           workoutPlan.push([parsedExerciseResponse.results[ranNum].name, parsedExerciseResponse.results[ranNum].id]);
+
+          workoutNames.push(<p className="workoutexercises">{parsedExerciseResponse.results[ranNum].name}</p>);
           
         }
       } 
@@ -188,7 +191,7 @@ const addWorkoutExercise = async (exerciseId,workoutId) => {
     }
   }
 
-    fetchIt().then(() => setFullWorkout(workoutPlan));
+    fetchIt().then(() => setFullWorkout(workoutNames));
     
     // if (validForSubmission()) {
     //   props.addNewWorkout(formFields);
