@@ -8,19 +8,11 @@ const WorkoutForm = (props) => {
   const [fullWorkout, setFullWorkout] = useState([]);
   const [workoutName, setWorkoutName] = useState();
 
-  const handleNameChange = (event) => {
-    setWorkoutName({
-      "workoutName": event.currentTarget
-    });
-    console.log(event.currentTarget)
-  };
-
   const handleFieldChange = (event) => {
     setFormFields({
       ...formFields,
       [event.currentTarget.id]: event.currentTarget.value,
     });
-    console.log(formFields)
   };
 
   const fetchExercise = async () => {
@@ -82,7 +74,7 @@ const WorkoutForm = (props) => {
     })
     if (exer.ok) {
       const parsedExer = await exer.json();
-      console.log(parsedExer);
+      
     }
     
   }
@@ -135,7 +127,8 @@ const addWorkoutExercise = async (exerciseId,workoutId) => {
     for (we = 0; we < fullWorkout.length; we++) {
       addWorkoutExercise(fullWorkout[we][1], response.id)
     }
-
+    window.location.href = '/workouts/' + response.id;
+    
   })
 
 // controller build add exercise see if exists create
@@ -157,6 +150,7 @@ const addWorkoutExercise = async (exerciseId,workoutId) => {
     // } catch (error) {
     //   console.error(`Error in fetch: ${error.message}`);
     // }
+     
   };
 
   let workoutPlan = [];
@@ -183,7 +177,8 @@ const addWorkoutExercise = async (exerciseId,workoutId) => {
           
         }
       } 
-      console.log(exerciseResponse); 
+      setFullWorkout(workoutPlan)
+      
     
       } catch (error) {
         console.error(`Error in fetch: ${error.message}`);
@@ -191,7 +186,7 @@ const addWorkoutExercise = async (exerciseId,workoutId) => {
     }
   }
 
-    fetchIt().then(() => setFullWorkout(workoutNames));
+    fetchIt().then(() => setWorkoutName(workoutNames));
     
     // if (validForSubmission()) {
     //   props.addNewWorkout(formFields);
@@ -226,9 +221,9 @@ const addWorkoutExercise = async (exerciseId,workoutId) => {
           {/* <input className="alert button, myClearButton" type="button" value="Clear Form" onClick={clearForm} /> */}
         </div>
       </form>
-      <span className="workoutform">{fullWorkout}</span>
+      <span className="workoutform">{workoutName}</span>
       <span className="workoutform">Workout Name</span><input type="text" id="name" name="name" required
-       minlength="4" maxlength="25" onChange={handleNameChange}></input>
+       minlength="4" maxlength="25"></input>
       <span className="saveform"><input className="myButton" type="button" value="Save Workout" onClick={addNewWorkout}/></span>
     </div>
   );
