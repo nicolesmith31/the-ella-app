@@ -1,0 +1,4 @@
+<h1 class="workoutmargin">Workout List</h1>
+<% @workouts.each do |workout| %>
+  <div class="workoutmargin"><%= link_to workout.name, "/workouts/#{workout.id}" %><div>
+<% end %>

@@ -1,0 +1,43 @@
+
+<div class="intro-tab"><h1>TDEE Calculator</h1>
+<p>
+  Your Total Daily Energy Expenditure or TDEE is an estimate of calories burned per day, with exercise taken into account. TDEE takes into account Basal Metabolic Rate, then multiplies that value by an activity multiplier.
+
+  Basal Metabolic Rate or BMR is how many calories burned when at rest. It is necessary to adjust numbers upwards to account for calories burned during the day, (more active). This is true even with a sedentary lifestyle. The TDEE calculator uses the best formulas and displays your score in a way that's easy to read and meaningful.
+</p>
+</div>
+
+<%= form_tag('/welcome', method: "get") do %>
+
+<%= label_tag(:gender, "Gender") %>
+<%= select_tag(:gender, options_for_select([['Male',1], ['Female',2]])) %>
+<br><br>
+<%= label_tag(:weight, "Weight") %>
+<%= number_field(:weight, step: 1.0) %>
+
+<br><br>
+<%= label_tag(:height, "Height") %>
+<%= number_field(:height, step: 1.0) %>
+
+<br><br>
+<%= label_tag(:age, "Age") %>
+<%= number_field(:age, step: 1.0) %>
+
+<br><br>
+<%= label_tag(:activityLevel, "Activity Level") %>
+<%= select_tag(:activityLevel, options_for_select([['1 - sedentary',1], ['2 - somewhat active',2], ['3 - active',3], ['4 - very active',4], ['5 - vigorously active',5]])) %>
+
+<!-- <p><%= submit_tag("Calculate") %></p> -->
+
+<br/>
+ <button class="myButton" type="button" onclick="calcTdee()">Calculate</button>
+
+<% end %>
+
+<div class="workoutmargin">
+<p> Your BMR is </p> <p id="bmr"> </p>
+<p> Your TDEE is </p> <p id="tdee"> </p>
+</div>
+<%= $output %>
+
+<div class="backButton, tdeebutton"><a href="/" class="myButton" id="btn">Back to Home</a></div>
