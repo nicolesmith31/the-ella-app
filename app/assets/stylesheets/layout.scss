@@ -141,3 +141,22 @@ input#name {
 .workoutexercises {
   margin-bottom: 1em;
 }
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
+  gap: 50px;
+  grid-auto-flow: dense;
+  grid-gap: 25px;
+  border: black;
+}
+
+.child {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+
